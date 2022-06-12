@@ -4,7 +4,10 @@
   "description": "An API where the user enters an image and it's dimensions to be displayes with these dimensions, and you can use the url of the image to use it in onther app.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run": "nodemon src/index.ts",
+    "build": "./node_modules/.bin/tsc",
+    "js": "npm run build && node build/index.js",
+    "prettier": "npx prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -23,7 +26,12 @@
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/typescript": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
+    "eslint": "^8.17.0",
     "nodemon": "^2.0.16",
     "prettier": "^2.6.2",
     "ts-node": "^10.8.1",
-    "ty
+    "typescript": "^4.7.3"
+  }
+}
