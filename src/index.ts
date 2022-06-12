@@ -1,3 +1,1 @@
-console.log("fuck you");
-let number;
-
+console.log("fuck you")
