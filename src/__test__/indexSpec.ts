@@ -1,1 +1,1 @@
-import jasmine from 'jasmine';
+import jasmine from "jasmine";
