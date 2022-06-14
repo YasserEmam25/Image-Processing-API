@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import resizeImage from "./utilites/resizeImage";
 
 const app = express();
@@ -12,7 +13,7 @@ app.get("/api/image", async (req, res) => {
     await resizeImage.resizeImage(imageUrl as string, width, height);
 
     const options = {
-        root: __dirname,
+        root: path.join(__dirname, "../assets/cache"),
         dotfiles: 'deny',
         headers: {
         'x-timestamp': Date.now(),
@@ -20,7 +21,7 @@ app.get("/api/image", async (req, res) => {
         }
     }
 
-    res.sendFile('sans.jpg', options, (err) => {
+    res.sendFile(`${imageUrl}_${width}_${height}.jpg`, options, (err) => {
         console.log('====================================');
         console.log(err);
         console.log('====================================');
