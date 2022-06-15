@@ -1,7 +1,7 @@
 import supertest from "supertest";
 import app from "../index";
 
-const req = supertest(app);
+const req = supertest(app.app);
 
 describe('Resize Image Module', () => {
     it("request an image in cache", async() => {
@@ -17,7 +17,7 @@ describe('Resize Image Module', () => {
     });
 
     it("request an image not in storage", async () => {
-        const res = await req.get(`/api/image/?url=adslksadjf&width=500&height=400`);
+        const res = await req.get(`/api/image/?url=deku&width=500&height=400`);
 
         expect(res.status).toEqual(200);
     });

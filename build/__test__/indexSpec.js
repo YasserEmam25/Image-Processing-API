@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const index_1 = __importDefault(require("../index"));
-const req = (0, supertest_1.default)(index_1.default);
+const req = (0, supertest_1.default)(index_1.default.app);
 describe('Resize Image Module', () => {
     it("request an image in cache", () => __awaiter(void 0, void 0, void 0, function* () {
         const res = yield req.get(`/api/image/?url=sans&width=500&height=400`);
@@ -25,7 +25,7 @@ describe('Resize Image Module', () => {
         expect(res.status).toEqual(200);
     }));
     it("request an image not in storage", () => __awaiter(void 0, void 0, void 0, function* () {
-        const res = yield req.get(`/api/image/?url=adslksadjf&width=500&height=400`);
+        const res = yield req.get(`/api/image/?url=deku&width=500&height=400`);
         expect(res.status).toEqual(200);
     }));
 });
