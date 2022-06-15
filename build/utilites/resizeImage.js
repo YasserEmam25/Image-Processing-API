@@ -16,6 +16,14 @@ const sharp_1 = __importDefault(require("sharp"));
 const path_1 = __importDefault(require("path"));
 const resizeImage = (url, width, height) => __awaiter(void 0, void 0, void 0, function* () {
     // const fileName = "./../../assets/images" + url;
+    let returnFile = {
+        format: "",
+        width: 0,
+        height: 0,
+        channels: 0,
+        premultiplied: true,
+        size: 0
+    };
     yield (0, sharp_1.default)(path_1.default.join(__dirname, `../../assets/images/${url}.jpg`))
         .resize(+width, +height)
         // .toFile(url + "_" + width as string + "_" + height as string,
@@ -24,13 +32,14 @@ const resizeImage = (url, width, height) => __awaiter(void 0, void 0, void 0, fu
         console.log("====================================");
         console.log(file);
         console.log("====================================");
+        returnFile = file;
     })
         .catch((err) => {
         console.log("====================================");
         console.log(err);
         console.log("====================================");
     });
-    console.log(`resize image funciton ${url} ${width} ${height}`);
+    return returnFile;
 });
 exports.default = {
     resizeImage,

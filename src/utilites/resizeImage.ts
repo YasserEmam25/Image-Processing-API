@@ -1,8 +1,25 @@
 import sharp from "sharp";
 import path from "path";
 
-const resizeImage = async (url: string, width: string, height: string) => {
+interface ImageFile {
+    format: string;
+    width: number;
+    height: number;
+    channels: number;
+    premultiplied: boolean;
+    size: number;
+}
+
+const resizeImage = async (url: string, width: string, height: string): Promise<ImageFile> => {
     // const fileName = "./../../assets/images" + url;
+    let returnFile: ImageFile = {
+        format: "",
+        width: 0,
+        height: 0,
+        channels: 0,
+        premultiplied: true,
+        size: 0
+    };
 
     await sharp(path.join(__dirname, `../../assets/images/${url}.jpg`))
         .resize(+width as number, +height as number)
@@ -17,6 +34,7 @@ const resizeImage = async (url: string, width: string, height: string) => {
             console.log("====================================");
             console.log(file);
             console.log("====================================");
+            returnFile = file;
         })
         .catch((err) => {
             console.log("====================================");
@@ -24,7 +42,7 @@ const resizeImage = async (url: string, width: string, height: string) => {
             console.log("====================================");
         });
 
-    console.log(`resize image funciton ${url} ${width} ${height}`);
+    return returnFile;
 };
 
 export default {

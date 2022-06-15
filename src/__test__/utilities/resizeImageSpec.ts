@@ -1,23 +1,25 @@
-import jasmine from 'jasmine';
 import resizeImage from '../../utilites/resizeImage';
 
-// describe('Resize Image Module', () => {
-//     it("should show the image in cache", async() => {
-//         spyOn(resizeImage, "resizeImage");
+interface ImageFile {
+    format: string;
+    width: number;
+    height: number;
+    channels: number;
+    premultiplied: boolean;
+    size: number;
+}
 
-//         await resizeImage.resizeImage("sans", "500", "400");
-        
-//         // eslint-disable-next-line @typescript-eslint/no-var-requires
-//         const image = require("../../../assets/cache/sans.jpg");
+describe('Resize Image Module', () => {
+    let file: ImageFile;
 
-//         expect(image).toBeNull();
-//     });
+    beforeAll(async() => {
+        file = await resizeImage.resizeImage("naruto", "400", "500");
+    })
 
-//     it("should resize the image in disk and return the new one", async () => {
-//         expect(resizeImage.resizeImage("sans", "500", "100")).not.toBeNull();
-//     });
-
-//     it("should return error", async () => {
-//         expect(resizeImage.resizeImage("san", "500", "400")).not.toBeNull();
-//     });
-// })
+    it("should resize the image", async() => {
+        expect(file).toEqual(jasmine.objectContaining({
+            width: 400,
+            height: 500,
+        }))
+    });
+})
