@@ -82,5 +82,5 @@ app.get("/api/image", (req, res) => {
 });
 app.listen(port, () => console.log(`Listening on port: ${port}`));
 exports.default = {
-    app
+    app,
 };

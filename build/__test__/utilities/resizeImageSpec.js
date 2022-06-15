@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const resizeImage_1 = __importDefault(require("../../utilites/resizeImage"));
-describe('Resize Image Module', () => {
+describe("Resize Image Module", () => {
     let file;
     beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
         file = yield resizeImage_1.default.resizeImage("naruto", "400", "500");

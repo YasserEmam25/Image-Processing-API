@@ -22,7 +22,7 @@ const resizeImage = (url, width, height) => __awaiter(void 0, void 0, void 0, fu
         height: 0,
         channels: 0,
         premultiplied: true,
-        size: 0
+        size: 0,
     };
     yield (0, sharp_1.default)(path_1.default.join(__dirname, `../../assets/images/${url}.jpg`))
         .resize(+width, +height)
