@@ -25,7 +25,7 @@ app.get("/api/image", (req, res) => {
     // check if the image is in the cache or not
     fs.promises
         .access(
-            path.join(__dirname, `../assets/cache/sans.jpg`),
+            path.join(__dirname, `../assets/cache/${imageUrl}.jpg`),
             fs.constants.F_OK
         )
         .then(() => {
@@ -37,7 +37,7 @@ app.get("/api/image", (req, res) => {
         .catch(() => {
             fs.promises
                 .access(
-                    path.join(__dirname, `../assets/images/`),
+                    path.join(__dirname, `../assets/images/${imageUrl}.jpg`),
                     fs.constants.F_OK
                 )
                 .then(async () => {

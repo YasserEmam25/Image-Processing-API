@@ -57,7 +57,7 @@ app.get("/api/image", (req, res) => {
     };
     // check if the image is in the cache or not
     fs.promises
-        .access(path_1.default.join(__dirname, `../assets/cache/sans.jpg`), fs.constants.F_OK)
+        .access(path_1.default.join(__dirname, `../assets/cache/${imageUrl}.jpg`), fs.constants.F_OK)
         .then(() => {
         // return the image in cache
         res.sendFile(`${imageUrl}_${width}_${height}.jpg`, options);
@@ -66,7 +66,7 @@ app.get("/api/image", (req, res) => {
         // if not in the cache, get it from the disk and resize it
         .catch(() => {
         fs.promises
-            .access(path_1.default.join(__dirname, `../assets/images/`), fs.constants.F_OK)
+            .access(path_1.default.join(__dirname, `../assets/images/${imageUrl}.jpg`), fs.constants.F_OK)
             .then(() => __awaiter(void 0, void 0, void 0, function* () {
             yield resizeImage_1.default.resizeImage(imageUrl, width, height);
             // return the image in cache

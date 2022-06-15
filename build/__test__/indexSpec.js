@@ -25,7 +25,7 @@ describe('Resize Image Module', () => {
         expect(res.status).toEqual(200);
     }));
     it("request an image not in storage", () => __awaiter(void 0, void 0, void 0, function* () {
-        const res = yield req.get(`/api/image/?url=deku&width=500&height=400`);
+        const res = yield req.get(`/api/image/?url=adsfkljlakdsjf&width=500&height=400`);
         expect(res.status).toEqual(200);
     }));
 });

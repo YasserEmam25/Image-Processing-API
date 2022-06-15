@@ -17,7 +17,7 @@ describe('Resize Image Module', () => {
     });
 
     it("request an image not in storage", async () => {
-        const res = await req.get(`/api/image/?url=deku&width=500&height=400`);
+        const res = await req.get(`/api/image/?url=adsfkljlakdsjf&width=500&height=400`);
 
         expect(res.status).toEqual(200);
     });
