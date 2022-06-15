@@ -1,4 +1,4 @@
-import resizeImage from '../../utilites/resizeImage';
+import resizeImage from "../../utilites/resizeImage";
 
 interface ImageFile {
     format: string;
@@ -9,17 +9,19 @@ interface ImageFile {
     size: number;
 }
 
-describe('Resize Image Module', () => {
+describe("Resize Image Module", () => {
     let file: ImageFile;
 
-    beforeAll(async() => {
+    beforeAll(async () => {
         file = await resizeImage.resizeImage("naruto", "400", "500");
-    })
-
-    it("should resize the image", async() => {
-        expect(file).toEqual(jasmine.objectContaining({
-            width: 400,
-            height: 500,
-        }))
     });
-})
+
+    it("should resize the image", async () => {
+        expect(file).toEqual(
+            jasmine.objectContaining({
+                width: 400,
+                height: 500,
+            })
+        );
+    });
+});

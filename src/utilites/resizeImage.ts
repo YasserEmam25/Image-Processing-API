@@ -10,7 +10,11 @@ interface ImageFile {
     size: number;
 }
 
-const resizeImage = async (url: string, width: string, height: string): Promise<ImageFile> => {
+const resizeImage = async (
+    url: string,
+    width: string,
+    height: string
+): Promise<ImageFile> => {
     // const fileName = "./../../assets/images" + url;
     let returnFile: ImageFile = {
         format: "",
@@ -18,7 +22,7 @@ const resizeImage = async (url: string, width: string, height: string): Promise<
         height: 0,
         channels: 0,
         premultiplied: true,
-        size: 0
+        size: 0,
     };
 
     await sharp(path.join(__dirname, `../../assets/images/${url}.jpg`))
