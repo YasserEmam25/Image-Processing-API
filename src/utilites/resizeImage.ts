@@ -1,16 +1,13 @@
 import sharp from "sharp";
-
-// const cacheImage = () => {
-
-// }
+import path from "path";
 
 const resizeImage = (url: string, width: string, height: string) => {
-    const fileName = "./../../assets/images" + url;
+    // const fileName = "./../../assets/images" + url;
 
-    sharp("sans.jpg")
-        .resize(+width as number, (+height) as number)
+    sharp(path.join(__dirname, `../../assets/images/${url}.jpg`))
+        .resize(+width as number, +height as number)
         // .toFile(url + "_" + width as string + "_" + height as string,
-        .toFile("sans2.jpg")
+        .toFile(path.join(__dirname, `../../assets/cache/${url}_${width}_${height}.jpg`))
         .then((file) => {
             console.log('====================================');
             console.log(file);
@@ -26,5 +23,4 @@ const resizeImage = (url: string, width: string, height: string) => {
 
 export default {
     resizeImage,
-    // cacheImage
 };
