@@ -15,47 +15,50 @@ app.get("/api/image", (req, res) => {
     // an object to help in sending image
     const options = {
         root: path.join(__dirname, "../assets/cache"),
-        dotfiles: 'deny',
+        dotfiles: "deny",
         headers: {
-        'x-timestamp': Date.now(),
-        'x-sent': true
-        }
-    }
+            "x-timestamp": Date.now(),
+            "x-sent": true,
+        },
+    };
 
-    /* First check if the image exists in cache or not
-        if exists, then show it
-        else check if the image is in on the disk or not
-         then resize it and send it
-        else show him an error 
-     */
-
-    fs.promises.access(path.join(__dirname, `../assets/cache/sans.jpg`), fs.constants.F_OK)
+    // check if the image is in the cache or not
+    fs.promises
+        .access(
+            path.join(__dirname, `../assets/cache/sans.jpg`),
+            fs.constants.F_OK
+        )
         .then(() => {
             // return the image in cache
             res.sendFile(`${imageUrl}_${width}_${height}.jpg`, options);
-            console.log("Image found in cache")
+            console.log("Image found in cache");
         })
+        // if not in the cache, get it from the disk and resize it
         .catch(() => {
-            fs.promises.access(path.join(__dirname, `../assets/images/`), fs.constants.F_OK)
-                .then(async() => {
-                    await resizeImage.resizeImage(imageUrl as string, width, height);
-                    
+            fs.promises
+                .access(
+                    path.join(__dirname, `../assets/images/`),
+                    fs.constants.F_OK
+                )
+                .then(async () => {
+                    await resizeImage.resizeImage(
+                        imageUrl as string,
+                        width,
+                        height
+                    );
+
                     // return the image in cache
                     res.sendFile(`${imageUrl}_${width}_${height}.jpg`, options);
 
                     console.log("Image resized and sent");
-                    
-                }).catch(() => {
+                })
+                // if the image is not in the disk
+                .catch(() => {
                     res.send("Error: Image not found");
 
                     console.log("Error: Image not found in the files");
-                    
-                })
-        })
-
-
-    
-
+                });
+        });
 });
 
 app.listen(port, () => console.log(`Listening on port: ${port}`));
