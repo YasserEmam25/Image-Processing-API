@@ -7,7 +7,7 @@ then show it to the user
 
 ## Usage
 To use the API, you have to enter the following api: 
-http://localhost:3000/images/?image=sans&width=500&height=400 
+http://localhost:3000/api/image/?image=sans&width=500&height=400 
 you can change the "sans" with the name of the image you want
 same goes for the width and the height of the image.
 
