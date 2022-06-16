@@ -8,7 +8,7 @@ const port = 3000;
 
 app.get("/api/image", (req, res) => {
     // get the paramaters from the get request url
-    const imageUrl = req.query.url;
+    const imageUrl = req.query.image;
     const width = req.query.width as string;
     const height = req.query.height as string;
 
