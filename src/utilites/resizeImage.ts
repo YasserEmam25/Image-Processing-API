@@ -34,13 +34,13 @@ const resizeImage = async (
                 `../../assets/cache/${url}_${width}_${height}.jpg`
             )
         )
-        .then((file) => {
+        .then((file: sharp.OutputInfo):void => {
             console.log("====================================");
             console.log(file);
             console.log("====================================");
             returnFile = file;
         })
-        .catch((err) => {
+        .catch((err: Error):void => {
             console.log("====================================");
             console.log(err);
             console.log("====================================");
