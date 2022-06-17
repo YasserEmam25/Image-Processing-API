@@ -6,7 +6,7 @@ import resizeImage from "./utilites/resizeImage";
 const app = express();
 const port = 3000;
 
-app.get("/api/image", (req: express.Request, res: express.Response):void => {
+app.get("/api/image", (req: express.Request, res: express.Response): void => {
     // get the paramaters from the get request url
     const imageUrl = req.query.image;
     const width = req.query.width as string;
@@ -28,19 +28,19 @@ app.get("/api/image", (req: express.Request, res: express.Response):void => {
             path.join(__dirname, `../assets/cache/${imageUrl}.jpg`),
             fs.constants.F_OK
         )
-        .then(():void => {
+        .then((): void => {
             // return the image in cache
             res.sendFile(`${imageUrl}_${width}_${height}.jpg`, options);
             console.log("Image found in cache");
         })
         // if not in the cache, get it from the disk and resize it
-        .catch(():void => {
+        .catch((): void => {
             fs.promises
                 .access(
                     path.join(__dirname, `../assets/images/${imageUrl}.jpg`),
                     fs.constants.F_OK
                 )
-                .then(async ():Promise<void> => {
+                .then(async (): Promise<void> => {
                     await resizeImage.resizeImage(
                         imageUrl as string,
                         width,
@@ -53,7 +53,7 @@ app.get("/api/image", (req: express.Request, res: express.Response):void => {
                     console.log("Image resized and sent");
                 })
                 // if the image is not in the disk
-                .catch(():void => {
+                .catch((): void => {
                     res.send("Error: Image not found");
 
                     console.log("Error: Image not found in the files");
@@ -61,7 +61,7 @@ app.get("/api/image", (req: express.Request, res: express.Response):void => {
         });
 });
 
-app.listen(port, ():void => console.log(`Listening on port: ${port}`));
+app.listen(port, (): void => console.log(`Listening on port: ${port}`));
 
 export default {
     app,
